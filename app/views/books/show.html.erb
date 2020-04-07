@@ -1,0 +1,56 @@
+
+<div class="row">
+	<div class="col-xs-3">
+
+		<h2>User info</h2>
+		<%= render 'users/profile',user:@user %>
+
+		<h2>New book</h2>
+		<%= render 'books/newform', book:@book %>
+
+	</div>
+
+	<div class="col-xs-9">
+		<h2>Book detail</h2>
+
+		<table class="table">
+			<tr>
+				<td>
+					<%= link_to (@user) do %>
+					<%= attachment_image_tag(@user, :profile_image,  size: '100x100', fallback: "no-image-mini.jpg") %><br>
+					<% end %>
+				</td>
+				<td><%= link_to @book1.title, @book1 %></td>
+				<td><%= @book1.body %></td>
+				<td>
+					
+			    </td>
+			    <td>
+			    	<%= render 'likes/like', book:@book1 %>
+			    </td>
+
+				<td>コメント数<%= @book1.book_comments.count %>件</td>
+				<% if current_user == @user %>
+				<td><%= link_to "Edit",edit_book_path(@book1), class: "btn-sm btn-success edit_book_#{@book.id}" %></td>
+				<td><%= link_to "Destroy",@book1, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_book_#{@book.id}" %></td>
+				<% end %>
+					<%= @user.name %>
+			</tr>
+		</table>
+	<div id="comments_area">
+		<%= render 'book_comments/index', comments: @comments %>
+
+		  <div>
+    <h4>コメント</h4>
+
+    </div>  
+    <% if user_signed_in? %>
+      <!-- コメント入力欄をブログの詳細ページに表示するためのrender -->
+      <%= render 'book_comments/form',{ comment: @book_comment, book1: @book1 } %>
+
+  </div>
+
+			<% end %>
+	</div>
+</div>
+

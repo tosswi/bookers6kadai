@@ -1,0 +1,9 @@
+<% @book_comments.each do |comment| %>
+  <% unless comment.id.nil? %>
+    <p><%= link_to "#{comment.user.name}さん", user_path(comment.user.id) %></p>
+    <p>コメント：<%= comment.comment %></p>
+    <% if comment.user == current_user %>
+      <p><%= link_to 'コメントを削除する', book_book_comments_path(comment.book_id, comment.id), method: :delete, remote: true %></p>
+    <% end %>
+  <% end %>
+<% end %>
