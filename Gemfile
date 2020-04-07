@@ -75,5 +75,5 @@ gem "refile-mini_magick"
 gem 'nokogiri'
 gem 'font-awesome-sass'
 gem 'jquery-rails'
-gem 'bootstrap-sass', '~> 3.3.6'
+gem 'bootstrap-sass', '~> 3.4.1'
 gem 'pry-byebug'
